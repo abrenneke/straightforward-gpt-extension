@@ -2,7 +2,7 @@
   "name": "straightforward-gpt",
   "displayName": "Straightforward GPT",
   "description": "Straightforward way to define ChatGPT prompts and run them on sections of code.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": "https://github.com/abrenneke/straightforward-gpt-extension",
   "engines": {
     "vscode": "^1.76.0"
@@ -41,9 +41,10 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
-    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --external:@dqbd/tiktoken --format=cjs --platform=node",
     "esbuild": "npm run esbuild-base -- --sourcemap",
-    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch"
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "package": "vsce package"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
@@ -53,6 +54,7 @@
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
     "@vscode/test-electron": "^2.2.3",
+    "@vscode/vsce": "^2.18.0",
     "esbuild": "^0.17.12",
     "eslint": "^8.34.0",
     "glob": "^8.1.0",
