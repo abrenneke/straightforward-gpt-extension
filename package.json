@@ -1,0 +1,65 @@
+{
+  "name": "straightforward-gpt",
+  "displayName": "Straightforward GPT",
+  "description": "Straightforward way to define ChatGPT prompts and run them on sections of code.",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.76.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "straightforward-gpt.runPromptWithSelection",
+        "title": "Run GPT Prompt With Selection"
+      }
+    ],
+    "configuration": {
+      "title": "Straightforward GPT",
+      "properties": {
+        "straightforward-gpt.promptsPath": {
+          "type": "string",
+          "default": ""
+        },
+        "straightforward-gpt.apiKey": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.76.0",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
+    "@vscode/test-electron": "^2.2.3",
+    "eslint": "^8.34.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@dqbd/tiktoken": "^1.0.2",
+    "axios": "^1.3.4",
+    "eventsource-parser": "^0.1.0",
+    "globby": "^13.1.3",
+    "got": "^12.6.0",
+    "nanoid": "^4.0.1",
+    "openai": "^3.2.1"
+  }
+}
