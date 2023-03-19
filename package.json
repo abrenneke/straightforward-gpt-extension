@@ -2,7 +2,7 @@
   "name": "straightforward-gpt",
   "displayName": "Straightforward GPT",
   "description": "Straightforward way to define ChatGPT prompts and run them on sections of code.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": "https://github.com/abrenneke/straightforward-gpt-extension",
   "engines": {
     "vscode": "^1.76.0"
@@ -11,7 +11,7 @@
     "Other"
   ],
   "activationEvents": [],
-  "main": "./out/extension.js",
+  "main": "./out/main.js",
   "contributes": {
     "commands": [
       {
@@ -34,12 +34,16 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run esbuild",
+    "compile": "npm run esbuild",
+    "type-check": "tsc -p ./ --no-emit",
+    "watch": "npm run esbuild-watch",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
@@ -49,10 +53,11 @@
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
     "@vscode/test-electron": "^2.2.3",
+    "esbuild": "^0.17.12",
     "eslint": "^8.34.0",
     "glob": "^8.1.0",
     "mocha": "^10.2.0",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.0"
   },
   "dependencies": {
     "@dqbd/tiktoken": "^1.0.2",

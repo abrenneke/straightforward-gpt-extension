@@ -8,6 +8,8 @@ import { Readable } from 'node:stream';
 import { inspect } from 'node:util';
 import * as eventSourceParser from 'eventsource-parser';
 import { AxiosError } from 'axios';
+import { globby } from 'globby';
+import { nanoid } from 'nanoid';
 
 interface Prompt {
   path: string;
@@ -48,8 +50,6 @@ export class Prompter {
       this.#channel.appendLine('Must set straightforward-gpt.promptsPath to use this command.');
       return;
     }
-
-    const { globby } = await import('globby');
 
     try {
       const files = await globby('**/*.{txt,prompt}', {
@@ -183,8 +183,6 @@ export class Prompter {
   }
 
   async doSelectedTextPrompt() {
-    const { nanoid } = await import('nanoid');
-
     const editor = vscode.window.activeTextEditor;
     if (editor) {
       const selection = editor.selection;
