@@ -3,6 +3,7 @@
   "displayName": "Straightforward GPT",
   "description": "Straightforward way to define ChatGPT prompts and run them on sections of code.",
   "version": "0.1.0",
+  "repository": "https://github.com/abrenneke/straightforward-gpt-extension",
   "engines": {
     "vscode": "^1.76.0"
   },
